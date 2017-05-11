@@ -1,0 +1,8 @@
+src/packages/
+src/TimeRegistration/bin/
+src/TimeRegistration.Core/obj/
+src/TimeRegistration.Tests/bin/
+src/TimeRegistration.Core/bin/
+src/TimeRegistration.Tests/obj/
+src/.vs/TimeRegistration/v14/.suo
+src/TimeRegistration/obj/
