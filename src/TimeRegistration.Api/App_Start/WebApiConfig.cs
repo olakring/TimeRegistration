@@ -1,7 +1,6 @@
-﻿
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace TimeRegistration
+namespace TimeRegistration.Api
 {
     public static class WebApiConfig
     {

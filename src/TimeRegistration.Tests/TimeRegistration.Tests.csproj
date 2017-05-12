@@ -97,12 +97,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TimeRegistration\TimeRegistration.csproj">
-      <Project>{5384E80B-F8FB-4E27-83E4-018B3C757BB4}</Project>
-      <Name>TimeRegistration</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

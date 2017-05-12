@@ -43,7 +43,15 @@
     <Compile Include="Dtos\PagedList.cs" />
     <Compile Include="Dtos\Project.cs" />
     <Compile Include="Dtos\User.cs" />
+    <Compile Include="Managers\Abstructions\IProjectManager.cs" />
+    <Compile Include="Managers\Abstructions\ITimeRegistrationManager.cs" />
+    <Compile Include="Managers\Abstructions\IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Managers\Implementations\" />
+    <Folder Include="Repositories\Abstructions\" />
+    <Folder Include="Repositories\Implementations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

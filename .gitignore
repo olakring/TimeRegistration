@@ -6,3 +6,5 @@ src/TimeRegistration.Core/bin/
 src/TimeRegistration.Tests/obj/
 src/.vs/TimeRegistration/v14/.suo
 src/TimeRegistration/obj/
+src/TimeRegistration.Api/bin/
+src/TimeRegistration.Api/obj/

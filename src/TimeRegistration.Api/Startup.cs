@@ -10,16 +10,16 @@ using Newtonsoft.Json.Serialization;
 using Owin;
 using Swashbuckle.Application;
 
-[assembly: OwinStartup(typeof(TimeRegistration.Startup))]
+[assembly: OwinStartup(typeof(TimeRegistration.Api.Startup))]
 
-namespace TimeRegistration
+namespace TimeRegistration.Api
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             var config = new HttpConfiguration();
-            
+
             WebApiConfig.Register(config);
 
             config
@@ -28,8 +28,8 @@ namespace TimeRegistration
                 .SerializerSettings
                 .ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-            
-            
+
+
             config.Formatters.XmlFormatter.UseXmlSerializer = true;
             app.UseWebApi(config);
 
