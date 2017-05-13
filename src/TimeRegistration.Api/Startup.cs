@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
 using System.Web.Http;
 using Microsoft.Owin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
+using SimpleInjector;
+using SimpleInjector.Integration.WebApi;
 using Swashbuckle.Application;
+using TimeRegistration.Core.Managers.Abstructions;
+using TimeRegistration.Core.Managers.Implementations;
+using TimeRegistration.Core.Repositories.Abstructions;
+using TimeRegistration.Core.Repositories.Implementations;
 
 [assembly: OwinStartup(typeof(TimeRegistration.Api.Startup))]
 
@@ -18,22 +21,24 @@ namespace TimeRegistration.Api
     {
         public void Configuration(IAppBuilder app)
         {
-            var config = new HttpConfiguration();
+            var container = new Container();
+            ConfigureSimpleInjector(container);
+
+            var config = new HttpConfiguration
+            {
+                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container)
+            };
 
             WebApiConfig.Register(config);
-
-            config
-                .Formatters
-                .JsonFormatter
-                .SerializerSettings
-                .ContractResolver = new CamelCasePropertyNamesContractResolver();
-            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
-
-
-            config.Formatters.XmlFormatter.UseXmlSerializer = true;
-            app.UseWebApi(config);
-
             ConfigureSwagger(config);
+
+            app.UseWebApi(config);
+        }
+
+        private void ConfigureSimpleInjector(Container container)
+        {
+            container.Register<IUserManager, UserManager>();
+            container.Register<IUserRepository, UserRepository>();
         }
 
         private void ConfigureSwagger(HttpConfiguration config)

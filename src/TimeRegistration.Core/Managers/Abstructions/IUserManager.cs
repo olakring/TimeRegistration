@@ -15,6 +15,6 @@ namespace TimeRegistration.Core.Managers.Abstructions
 
         void DeleteUser(int userId);
 
-        IList<User> GetUserList(int page, int pageSize);
+        PagedList<User> GetUserList(int page, int pageSize);
     }
 }

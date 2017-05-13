@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using TimeRegistration.Core.Dtos;
+using TimeRegistration.Core.Managers.Abstructions;
 
 namespace TimeRegistration.Api.Controllers
 {
@@ -12,6 +13,12 @@ namespace TimeRegistration.Api.Controllers
     [RoutePrefix("v1")]
     public class TimeRegistrationController : ApiController
     {
+        private readonly IUserManager _userManager;
+        public TimeRegistrationController(IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
+
         /// <summary>
         /// Get list of users.
         /// </summary>
@@ -20,7 +27,7 @@ namespace TimeRegistration.Api.Controllers
         [Route("users")]
         public PagedList<User> GetUserList(int page = 1, int pageSize = 20)
         {
-            return new PagedList<User>(null, page, pageSize, 0);
+            return _userManager.GetUserList(page, pageSize);
         }
 
         /// <summary>
@@ -32,7 +39,7 @@ namespace TimeRegistration.Api.Controllers
         [Route("users")]
         public int CreateUser(string userName)
         {
-            return 100;
+            return _userManager.CreateUser(userName);
         }
 
         /// <summary>

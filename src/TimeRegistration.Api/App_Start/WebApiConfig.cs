@@ -1,4 +1,6 @@
 ﻿using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace TimeRegistration.Api
 {
@@ -8,6 +10,13 @@ namespace TimeRegistration.Api
         {
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            config
+                .Formatters
+                .JsonFormatter
+                .SerializerSettings
+                .ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
         }
     }
 }
